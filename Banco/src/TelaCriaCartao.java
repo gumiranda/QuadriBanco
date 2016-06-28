@@ -134,9 +134,8 @@ public class TelaCriaCartao extends javax.swing.JInternalFrame {
                     num = gerador.nextInt(1000000);
                 }while(BaseDadosCartoesDeCredito.buscar(num) != null);
                 cc.setCodigo(num);
-                BaseDadosCartoesDeCredito.adicionar(cc);
                 BaseDadosCartoesDeCredito.cadastra(cc,"cartoes.dat");
-                JOptionPane.showMessageDialog(this, "Cartão inserido!");
+                JOptionPane.showMessageDialog(this, "Cartão criado!\n O número dele é"+num);
                 TelaCriaCartao.this.dispose();
             }
         }

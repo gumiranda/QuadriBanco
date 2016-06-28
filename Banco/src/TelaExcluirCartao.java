@@ -1,8 +1,21 @@
+
 import javax.swing.JOptionPane;
 
-public class TelaExcluirCliente extends javax.swing.JInternalFrame {
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-    public TelaExcluirCliente() {
+/**
+ *
+ * @author root
+ */
+public class TelaExcluirCartao  extends javax.swing.JInternalFrame {
+   
+
+
+    public TelaExcluirCartao() {
         initComponents();
     }
                          
@@ -15,10 +28,10 @@ public class TelaExcluirCliente extends javax.swing.JInternalFrame {
         jexcluir = new javax.swing.JButton();
         jcancelar = new javax.swing.JButton();
 
-        setTitle("Excluir cliente");
+        setTitle("Cancelar cartão");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Nome do cliente:");
+        jLabel1.setText("Codigo do cartão:");
 
         jScrollPane1.setViewportView(jnome);
 
@@ -84,32 +97,28 @@ public class TelaExcluirCliente extends javax.swing.JInternalFrame {
         pack();
     }                   
 
-    private void jexcluirActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        Cliente c = BaseDadosClientes.buscar(jnome.getText());
+    private void jexcluirActionPerformed(java.awt.event.ActionEvent evt) {      
+       String codigo = jnome.getText();
+                       int valor = Integer.parseInt(codigo);
+        CartaoDeCredito c = BaseDadosCartoesDeCredito.buscar(valor);
+        
         
         if(c == null)
-            JOptionPane.showMessageDialog(this, "Cliente não encontrado");
+            JOptionPane.showMessageDialog(this, "Cartão de Crédito não encontrado");
         else                                                
         {
-            Conta con = BaseDadosContas.buscarPorCliente(jnome.getText());
-            if(con != null)
-            {
-                CartaoDeCredito cartao = BaseDadosCartoesDeCredito.buscarPorConta(con);
-                if(cartao != null)
-                    BaseDadosCartoesDeCredito.excluir(cartao.getCodigo());
-                BaseDadosContas.excluir(con.getIdCliente());
-            }
-            BaseDadosClientes.excluiCadastro(c,"clientes.dat");
-            JOptionPane.showMessageDialog(this, "Cliente excluido");
+            
+            BaseDadosCartoesDeCredito.excluiCadastro(c,"cartoes.dat");
+            JOptionPane.showMessageDialog(this, "Cartão de crédito cancelado!");
             getContentPane().remove(jexcluir);
-            TelaExcluirCliente.this.dispose();
+            TelaExcluirCartao.this.dispose();
             jexcluir = null;  
         }
     }                                        
 
     private void jcancelarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         getContentPane().remove(jcancelar);
-        TelaExcluirCliente.this.dispose();
+        TelaExcluirCartao.this.dispose();
         jcancelar = null;  
     }                                         
                    
@@ -120,3 +129,4 @@ public class TelaExcluirCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton jexcluir;
     private javax.swing.JTextPane jnome;               
 }
+

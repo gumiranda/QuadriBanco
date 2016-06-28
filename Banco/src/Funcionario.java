@@ -24,7 +24,9 @@ public static boolean setPisoSalarial(double pisoSalarial){
 public static double getPisoSalarial(){
     return Funcionario.pisoSalarial;
 }
-
+public String getCTPS(){
+    return this.ctps;
+}
 public boolean setCtps(String ctps)
 {
  if (ctps.length() > 0) {

@@ -29,8 +29,11 @@ public class Main2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         menuitem2 = new javax.swing.JMenuItem();
@@ -47,12 +50,17 @@ public class Main2 extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         depositar = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+
+        jMenuItem3.setText("jMenuItem3");
+
+        jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Projeto Banco");
@@ -74,12 +82,14 @@ public class Main2 extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 881, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 664, Short.MAX_VALUE)
         );
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons 1/house.png"))); // NOI18N
         jMenu5.setText("Arquivo");
@@ -197,6 +207,27 @@ public class Main2 extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons 1/calculator.png"))); // NOI18N
+        jMenu1.setText("Cartão De Crédito");
+
+        jMenuItem8.setText("Novo");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
+        jMenuItem6.setText("Cancelar");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu1);
+
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons 1/cog.png"))); // NOI18N
         jMenu3.setText("Operações");
 
@@ -215,12 +246,6 @@ public class Main2 extends javax.swing.JFrame {
             }
         });
         jMenu3.add(depositar);
-
-        jMenuItem7.setText("Abrir Financiamento");
-        jMenu3.add(jMenuItem7);
-
-        jMenuItem8.setText("Adquirir Cartão de Crédito");
-        jMenu3.add(jMenuItem8);
 
         jMenuItem1.setText("Transferências");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -263,6 +288,9 @@ public class Main2 extends javax.swing.JFrame {
 
     private void jmexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmexcluirActionPerformed
         // TODO add your handling code here:
+        TelaExcluirCliente telacliente = new TelaExcluirCliente();
+        jDesktopPane1.add(telacliente);
+        telacliente.setVisible(true);
     }//GEN-LAST:event_jmexcluirActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
@@ -469,6 +497,21 @@ public class Main2 extends javax.swing.JFrame {
         // TODO add your handling code here:
       //  TelaPesquisar telapesq = new TelaPesquisar();
       //  telapesq.setVisible(true);
+      String nome;
+        Funcionario c;
+        nome = JOptionPane.showInputDialog("Qual o nome do funcionario?");
+        c = BaseDadosTecnicos.buscar(nome);
+        if(c == null){
+            c = BaseDadosGerentes.buscar(nome);
+            if(c ==null){
+            JOptionPane.showMessageDialog(this, "Funcionario não encontrado.");
+            }
+        }else
+        {
+            TelaPesquisarFuncionario p = new TelaPesquisarFuncionario(c);
+            jDesktopPane1.add(p);
+            p.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
@@ -484,6 +527,20 @@ public class Main2 extends javax.swing.JFrame {
         jDesktopPane1.add(telagerente);
         telagerente.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        TelaCriaCartao telacartao = new TelaCriaCartao();
+        jDesktopPane1.add(telacartao);
+        telacartao.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        TelaExcluirCartao telacartaoex = new TelaExcluirCartao();
+        jDesktopPane1.add(telacartaoex);
+        telacartaoex.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -522,7 +579,9 @@ public class Main2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem depositar;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -534,8 +593,10 @@ public class Main2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
