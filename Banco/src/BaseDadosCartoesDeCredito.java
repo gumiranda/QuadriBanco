@@ -8,6 +8,17 @@ public abstract class BaseDadosCartoesDeCredito {
     public static void adicionar(CartaoDeCredito d){
         cartoes.add(d);
     }
+    public static void excluiCadastro(CartaoDeCredito c, String arquivo){
+        		 cartoes.remove(c);
+        try	
+		 {
+		       FileOutputStream fout=new FileOutputStream(arquivo);
+		       ObjectOutputStream oout=new ObjectOutputStream(fout);
+		       oout.writeObject(cartoes);
+		}catch(Exception e){
+                    e.printStackTrace();
+                }
+    }
     public static void cadastra(CartaoDeCredito cartao, String arquivo){
         try	
 		 {

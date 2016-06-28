@@ -10,6 +10,17 @@ public abstract class BaseDadosClientes {
     public static void adicionar(Cliente a){
         clientes.add(a);
     }
+    public static void excluiCadastro(Cliente c, String arquivo){
+        		 clientes.remove(c);
+        try	
+		 {
+		       FileOutputStream fout=new FileOutputStream(arquivo);
+		       ObjectOutputStream oout=new ObjectOutputStream(fout);
+		       oout.writeObject(clientes);
+		}catch(Exception e){
+                    e.printStackTrace();
+                }
+    }
     public static void cadastra(Cliente c, String arquivo){
         try	
 		 {

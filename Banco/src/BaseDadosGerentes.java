@@ -21,6 +21,17 @@ public static void cadastra(Gerente c, String arquivo){
                 }
 		 gerentes.add(c);
     }
+public static void excluiCadastro(Gerente c, String arquivo){
+    gerentes.remove(c);
+        try	
+		 {
+		       FileOutputStream fout=new FileOutputStream(arquivo);
+		       ObjectOutputStream oout=new ObjectOutputStream(fout);
+		       oout.writeObject(gerentes);
+		}catch(Exception e){
+                    e.printStackTrace();
+                }
+    }
     public static void recebeArray(ArrayList<Gerente> listaSalva){
         gerentes = listaSalva;
         
@@ -49,6 +60,7 @@ p.mostrarDados();
         }
         return false;
     }
+    
     
      public static ArrayList getArray(){
           return gerentes;

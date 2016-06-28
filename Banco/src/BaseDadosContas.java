@@ -8,7 +8,18 @@ public abstract class BaseDadosContas {
         contas.add(a);
     }
    
-    
+    public static void excluiCadastro(Conta c, String arquivo){
+        		 contas.add(c);
+        try	
+		 {
+		       FileOutputStream fout=new FileOutputStream(arquivo);
+		       ObjectOutputStream oout=new ObjectOutputStream(fout);
+		       oout.writeObject(contas);
+                       oout.close();
+		}catch(Exception e){
+                    e.printStackTrace();
+                }
+        }
     public static void cadastra(Conta c, String arquivo){
         try	
 		 {

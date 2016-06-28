@@ -19,6 +19,17 @@ public abstract class BaseDadosFinanciamentos {
     public static void adicionar(Financiamento a) {
         financiamentos.add(a);
     }
+    public static void excluiCadastro(Financiamento f, String arquivo){
+        		 financiamentos.remove(f);
+        try	
+		 {
+		       FileOutputStream fout=new FileOutputStream(arquivo);
+		       ObjectOutputStream oout=new ObjectOutputStream(fout);
+		       oout.writeObject(financiamentos);
+		}catch(Exception e){
+                    e.printStackTrace();
+                }
+    }
     public static void cadastra(Financiamento f, String arquivo){
         try	
 		 {

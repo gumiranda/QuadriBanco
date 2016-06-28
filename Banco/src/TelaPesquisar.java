@@ -192,7 +192,7 @@ public class TelaPesquisar extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(voltar);
-        voltar.setBounds(400, 350, 61, 23);
+        voltar.setBounds(400, 350, 65, 27);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 586, 390);

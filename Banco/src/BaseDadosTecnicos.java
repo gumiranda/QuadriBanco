@@ -10,7 +10,17 @@ public abstract class BaseDadosTecnicos {
         tecnicos = new ArrayList<Funcionario>();
     }
 }
-     
+     public static void excluiCadastro(Funcionario c, String arquivo){
+        		 tecnicos.remove(c);
+         try	
+		 {
+		       FileOutputStream fout=new FileOutputStream(arquivo);
+		       ObjectOutputStream oout=new ObjectOutputStream(fout);
+		       oout.writeObject(tecnicos);
+		}catch(Exception e){
+                    e.printStackTrace();
+                }
+    }
     public static void cadastra(Tecnico c, String arquivo){
         try	
 		 {
